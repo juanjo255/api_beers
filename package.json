@@ -1,0 +1,8 @@
+{
+  "name": "api_beers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/juanjo255/api_beers.git",
+  "author": "juanjo255 <piconcossio@gmail.com>",
+  "license": "MIT"
+}
