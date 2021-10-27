@@ -9,7 +9,7 @@ const Client  = new MongoClient (stringDeConexion, {useNewUrlParser:true, useUni
 let conexionBaseDeDatos;
 
 const conectarBD = (callback) => {
-    Client.connect((err,db) =>{
+    Client.connect((err, db) =>{
         if (err){
             console.error("error conectando a la base de datos");
             return false;
