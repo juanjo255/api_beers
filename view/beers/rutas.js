@@ -1,11 +1,9 @@
 import Express from "express";
-import { getDB } from "../../db/db.js";
-import { ObjectId } from "mongodb";
-import { queryAllBeers, crearVenta, editarVenta, eliminarVenta } from "../../controllers/beers/controller.js";
+import { obtenerVentas, obtenerUnaVenta, crearVenta, editarVenta, eliminarVenta } from "../../controllers/beers/controller.js";
 
 const rutasBeers = Express.Router();
 
-const genericCallback = (err, result) =>{
+const genericCallback = (res) => (err, result) =>{
     if (err){
         res.status(400).send("error consultando")
     }else {
@@ -14,20 +12,24 @@ const genericCallback = (err, result) =>{
 }
 
 rutasBeers.route("/beers").get ((req, res)=>{
-    queryAllBeers (genericCallback(res))
+    obtenerVentas (genericCallback(res))
 });
 
-rutasBeers.route("/beers/post").post ((req, res) => {
-
-    crearVenta (req.body, generiCallback(res))
+rutasBeers.route("/beers/:id").get ((req, res)=>{
+    obtenerUnaVenta (req.params.id, genericCallback(res))
 });
 
-rutasBeers.route("/beers/edit").patch((req, res)=>{
-    editarVenta (req.body, genericCallback(res))
+rutasBeers.route("/beers").post ((req, res) => {
+
+    crearVenta (req.body, genericCallback(res))
+});
+
+rutasBeers.route("/beers/:id").patch((req, res)=>{
+    editarVenta (req.params.id, req.body, genericCallback(res))
 })
 
-rutasBeers.route("/beers/delete").delete((req, res) => {
-    eliminarVenta (req.body, genericCallback(res))
+rutasBeers.route("/beers/:id").delete((req, res) => {
+    eliminarVenta (req.params.id, genericCallback(res))
 })
 
 export default rutasBeers;
