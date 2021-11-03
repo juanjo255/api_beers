@@ -11,7 +11,7 @@ const genericCallback = (res) => (err, result) =>{
     }
 }
 
-rutasBeers.route("/beers").get ((req, res)=>{
+rutasBeers.route("/beers/").get ((req, res)=>{
     obtenerVentas (genericCallback(res))
 });
 
@@ -19,7 +19,7 @@ rutasBeers.route("/beers/:id").get ((req, res)=>{
     obtenerUnaVenta (req.params.id, genericCallback(res))
 });
 
-rutasBeers.route("/beers").post ((req, res) => {
+rutasBeers.route("/beers/").post ((req, res) => {
 
     crearVenta (req.body, genericCallback(res))
 });

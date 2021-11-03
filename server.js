@@ -16,7 +16,7 @@ app.use (rutasEmployees)
 const port = process.env.PORT || 5000
 
 const main = ()=>{
-    return app.listen (port, ()=> {console.log (`escuchando port ${port}`)});
+    return app.listen ( process.env.PORT , ()=> {console.log (`escuchando port ${ process.env.PORT }`)});
 };
 
 conectarBD(main);

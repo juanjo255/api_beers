@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 
-dotenv.config({path: "./.env"});
+dotenv.config({path: "./.env"})
 
 const stringDeConexion = process.env.DATABASE_URL;
 const Client  = new MongoClient (stringDeConexion, {useNewUrlParser:true, useUnifiedTopology:true})
