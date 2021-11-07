@@ -22,7 +22,7 @@ var jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-app.use (jwtCheck)
+app.use (jwtCheck);
 app.use (Express.json());
 app.use (Cors());
 app.use (rutasBeers);
