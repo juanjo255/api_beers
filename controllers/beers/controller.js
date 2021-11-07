@@ -17,6 +17,7 @@ const crearVenta = async (nuevaVenta, callback)=>{
     const conexionBaseDeDatos = getDB ();
     await conexionBaseDeDatos.collection ("beerSales").insertOne(nuevaVenta, callback)
 }
+
 const editarVenta = async (id, edit, callback) =>{
     const filtro =  {_id: new ObjectId (id)}
     const operacion = {

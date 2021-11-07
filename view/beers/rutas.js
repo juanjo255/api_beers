@@ -20,7 +20,6 @@ rutasBeers.route("/beers/:id").get ((req, res)=>{
 });
 
 rutasBeers.route("/beers/").post ((req, res) => {
-
     crearVenta (req.body, genericCallback(res))
 });
 
