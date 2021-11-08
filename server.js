@@ -22,16 +22,16 @@ var jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-app.use (jwtCheck);
 app.use (Express.json());
 app.use (Cors());
+app.use (jwtCheck);
 app.use (rutasBeers);
 app.use (rutasEmployees);
 
-//const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 
 const main = ()=>{
-    return app.listen ( process.env.PORT , ()=> {console.log (`escuchando port ${ process.env.PORT }`)});
+    return app.listen ( port , ()=> {console.log (`escuchando port ${ port }`)});
 };
 
 conectarBD(main);

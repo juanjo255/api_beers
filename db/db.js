@@ -23,7 +23,8 @@ const conectarBD = (callback) => {
         return callback();
     });
 };
+
 const getDB = ()=>{
     return conexionBaseDeDatos;
-}
+};
 export { conectarBD, getDB };
