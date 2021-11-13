@@ -11,6 +11,11 @@ const obtenerUnEmpleado = async (id, callback)=>{
     await conexionBaseDeDatos.collection ("employees").findOne({_id:new ObjectId(id)}, callback)
 }
 
+const consultarOCrearEmpleado = async (req, callback) => {
+    const token = req.headers.authorization.split ("Bearer ")[1];
+    console.log ("token", token)
+}
+
 const crearEmpleados = async (nuevoEmpleado, callback)=>{
 
     console.log ("nuevo Empleado creado", nuevoEmpleado)
@@ -34,4 +39,4 @@ const eliminarEmpleados = async (id, callback)=>{
     await conexionBaseDeDatos.collection("employees").deleteOne(filtro, callback)
 }
 
-export {obtenerEmpleados, obtenerUnEmpleado, crearEmpleados, editarEmpleados, eliminarEmpleados};
+export {obtenerEmpleados, obtenerUnEmpleado, consultarOCrearEmpleado, crearEmpleados, editarEmpleados, eliminarEmpleados};

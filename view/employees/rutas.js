@@ -1,5 +1,5 @@
 import Express from "express";
-import { obtenerEmpleados, obtenerUnEmpleado, crearEmpleados, editarEmpleados, eliminarEmpleados } from "../../controllers/employees/controller.js";
+import { obtenerEmpleados, obtenerUnEmpleado, crearEmpleados, editarEmpleados, eliminarEmpleados, consultarOCrearEmpleado } from "../../controllers/employees/controller.js";
 
 const rutasEmployees = Express.Router();
 
@@ -13,6 +13,10 @@ const genericCallback = (res) => (err, result) =>{
 
 rutasEmployees.route("/employees").get ((req, res)=>{
     obtenerEmpleados (genericCallback(res))
+});
+
+rutasEmployees.route("/employees/self").get ((req, res)=>{
+    consultarOCrearEmpleado (req, genericCallback (res))
 });
 
 rutasEmployees.route("/employees/:id").get ((req, res)=>{
