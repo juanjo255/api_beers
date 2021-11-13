@@ -15,9 +15,9 @@ const obtenerUnEmpleado = async (id, callback)=>{
 
 const consultarOCrearEmpleado = async (req, callback) => {
     const token = req.headers.authorization.split ("Bearer ")[1];
-    const user = jwtDecode(token)["http://localhost/userData"]
+    const user = jwtDecode(token)["http://localhost/userData"];
     const conexionBaseDeDatos = getDB();
-    await conexionBaseDeDatos.collection ("usuarios").findOne ({email:user.email}, (error, response)=>{
+    await conexionBaseDeDatos.collection ("employees").findOne ({correo:user.correo}, (error, response)=>{
         if (response) {
 
         }else{
