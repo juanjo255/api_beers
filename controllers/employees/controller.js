@@ -1,5 +1,7 @@
 import { getDB } from "../../db/db.js";
 import { ObjectId } from "mongodb";
+import jwtDecode from "jwt-decode";
+import { response } from "express";
 
 const obtenerEmpleados = async(callback)=>{
     const conexionBaseDeDatos = getDB ();
@@ -13,8 +15,17 @@ const obtenerUnEmpleado = async (id, callback)=>{
 
 const consultarOCrearEmpleado = async (req, callback) => {
     const token = req.headers.authorization.split ("Bearer ")[1];
-    console.log ("token", token)
-    return token
+    const user = jwtDecode(token)["http://localhost/userData"]
+    const conexionBaseDeDatos = getDB();
+    await conexionBaseDeDatos.collection ("usuarios").findOne ({email:user.email}, (error, response)=>{
+        if (response) {
+
+        }else{
+            user.auth0ID = user._id
+            delete user._id
+            await crearEmpleados(user, (err, response) => callback(err, user))
+        }
+    })
 }
 
 const crearEmpleados = async (nuevoEmpleado, callback)=>{
