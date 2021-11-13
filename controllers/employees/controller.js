@@ -14,6 +14,7 @@ const obtenerUnEmpleado = async (id, callback)=>{
 const consultarOCrearEmpleado = async (req, callback) => {
     const token = req.headers.authorization.split ("Bearer ")[1];
     console.log ("token", token)
+    return token
 }
 
 const crearEmpleados = async (nuevoEmpleado, callback)=>{
