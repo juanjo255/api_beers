@@ -1,7 +1,6 @@
 import { getDB } from "../../db/db.js";
 import { ObjectId } from "mongodb";
 import jwtDecode from "jwt-decode";
-import { response } from "express";
 
 const obtenerEmpleados = async(callback)=>{
     const conexionBaseDeDatos = getDB ();
