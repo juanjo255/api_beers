@@ -4,7 +4,7 @@ import Express from "express";
 import Cors from "cors";
 import { conectarBD } from "./db/db.js";
 import rutasBeers from "./view/beers/rutas.js";
-import rutasEmployees from "./view/employees/rutas.js";
+import rutasUsers from "./view/users/rutas.js";
 import jwt from 'express-jwt';
 import jwks from "jwks-rsa";
 
@@ -26,7 +26,7 @@ app.use (Express.json());
 app.use (Cors());
 app.use (jwtCheck);
 app.use (rutasBeers);
-app.use (rutasEmployees);
+app.use (rutasUsers);
 
 const port = process.env.PORT || 5000
 
