@@ -28,13 +28,6 @@ const consultarOCrearUsuario = async (req, callback) => {
     })
 };
 
-const crearUsuarios = async (nuevoUsuario, callback)=>{
-
-    console.log ("nuevo Usuario creado", nuevoUsuario)
-    const conexionBaseDeDatos = getDB ();
-    await conexionBaseDeDatos.collection ("employees").insertOne(nuevoUsuario, callback)
-};
-
 const editarUsuario = async (id, edit, callback) =>{
     const filtro =  {_id: new ObjectId (id)}
     const operacion = {
@@ -45,10 +38,5 @@ const editarUsuario = async (id, edit, callback) =>{
     .findOneAndUpdate(filtro, operacion, {upsert: true, returnOriginal:true}, callback)
 };
 
-const eliminarUsuarios = async (id, callback)=>{
-    const filtro =  {_id: new ObjectId (id)}
-    const conexionBaseDeDatos = getDB ();
-    await conexionBaseDeDatos.collection("employees").deleteOne(filtro, callback)
-};
 
 export {obtenerUsuarios, obtenerUnUsuario, consultarOCrearUsuario, crearUsuarios, editarUsuario, eliminarUsuarios};
