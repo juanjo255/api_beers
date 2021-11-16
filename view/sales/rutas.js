@@ -1,7 +1,7 @@
 import Express from "express";
-import { obtenerVentas, obtenerUnaVenta, crearVenta, editarVenta, eliminarVenta } from "../../controllers/beers/controller.js";
+import { obtenerVentas, obtenerUnaVenta, crearVenta, editarVenta, eliminarVenta } from "../../controllers/sales/controller.js";
 
-const rutasBeers = Express.Router();
+const rutasSales = Express.Router();
 
 const genericCallback = (res) => (err, result) =>{
     if (err){
@@ -11,24 +11,24 @@ const genericCallback = (res) => (err, result) =>{
     }
 }
 
-rutasBeers.route("/beers/").get ((req, res)=>{
+rutasSales.route("/sales/").get ((req, res)=>{
     obtenerVentas (genericCallback(res))
 });
 
-rutasBeers.route("/beers/:id/").get ((req, res)=>{
+rutasSales.route("/sales/:id/").get ((req, res)=>{
     obtenerUnaVenta (req.params.id, genericCallback(res))
 });
 
-rutasBeers.route("/beers/").post ((req, res) => {
+rutasSales.route("/sales/").post ((req, res) => {
     crearVenta (req.body, genericCallback(res))
 });
 
-rutasBeers.route("/beers/:id").patch((req, res)=>{
+rutasSales.route("/sales/:id").patch((req, res)=>{
     editarVenta (req.params.id, req.body, genericCallback(res))
 })
 
-rutasBeers.route("/beers/:id").delete((req, res) => {
+rutasSales.route("/sales/:id").delete((req, res) => {
     eliminarVenta (req.params.id, genericCallback(res))
 })
 
-export default rutasBeers;
+export default rutasSales;
