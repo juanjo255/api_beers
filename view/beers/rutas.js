@@ -15,7 +15,7 @@ rutasBeers.route("/beers/").get ((req, res)=>{
     obtenerVentas (genericCallback(res))
 });
 
-rutasBeers.route("/beers/:id").get ((req, res)=>{
+rutasBeers.route("/beers/:id/").get ((req, res)=>{
     obtenerUnaVenta (req.params.id, genericCallback(res))
 });
 

@@ -18,12 +18,12 @@ const consultarOCrearUsuario = async (req, callback) => {
     const conexionBaseDeDatos = getDB();
     await conexionBaseDeDatos.collection ("employees").findOne ({email:user.email}, (error, response)=>{
         if (response) {
-
+            callback (error, response)
         }else{
             user.auth0ID = user._id;
             delete user._id;
             user.rol = "Pendiente"
-            crearUsuarios(user, (err, response) => {callback(err, user)});
+            crearUsuarios(user, (err, res) => {callback(err, user)});
         }
     })
 };
@@ -38,5 +38,11 @@ const editarUsuario = async (id, edit, callback) =>{
     .findOneAndUpdate(filtro, operacion, {upsert: true, returnOriginal:true}, callback)
 };
 
+const crearUsuarios = async (nuevoUsuario, callback)=>{
 
-export {obtenerUsuarios, obtenerUnUsuario, consultarOCrearUsuario, crearUsuarios, editarUsuario, eliminarUsuarios};
+    console.log ("nuevo Usuario creado", nuevoUsuario)
+    const conexionBaseDeDatos = getDB ();
+    await conexionBaseDeDatos.collection ("employees").insertOne(nuevoUsuario, callback)
+};
+
+export {obtenerUsuarios, obtenerUnUsuario, consultarOCrearUsuario, editarUsuario, crearUsuarios};
